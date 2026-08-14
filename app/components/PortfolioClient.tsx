@@ -4,7 +4,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 type PreviewName = "resume" | "linkedin" | "github" | null;
 
@@ -41,6 +40,7 @@ const projects = [
   {
     name: "Hermes Agent",
     image: "/assets/hermes-optimized.png",
+    secondaryImage: "/assets/hermes-banner.jpg",
     href: "https://github.com/imraghavojha/Hermes-Optimized",
     headline: "an always-on personal agent with lazy tool discovery that cuts schema tokens by 80%",
     tags: ["HERMES AGENT", "LAZY TOOL LOADING", "PYTHON + LINUX"],
@@ -173,14 +173,84 @@ function ContributionGrid() {
   );
 }
 
-function TransitionLink({ href, className, children, ariaLabel, ariaCurrent }: { href: string; className?: string; children: React.ReactNode; ariaLabel?: string; ariaCurrent?: "page" }) {
-  const router = useRouter();
+function BuilderCardStack() {
+  const [activeCard, setActiveCard] = useState(0);
+  const dragStart = useRef<number | null>(null);
+  const cardCount = 3;
 
+  const move = (direction: number) => {
+    setActiveCard((current) => (current + direction + cardCount) % cardCount);
+  };
+
+  const positionFor = (index: number) => {
+    const offset = (index - activeCard + cardCount) % cardCount;
+    return offset === 0 ? "is-active" : offset === 1 ? "is-next" : "is-back";
+  };
+
+  return (
+    <div className="builder-card-stack-shell">
+      <div
+        className="builder-card-stack"
+        onPointerDown={(event) => { dragStart.current = event.clientX; }}
+        onPointerUp={(event) => {
+          if (dragStart.current === null) return;
+          const distance = event.clientX - dragStart.current;
+          if (Math.abs(distance) > 45) move(distance < 0 ? 1 : -1);
+          dragStart.current = null;
+        }}
+        onPointerCancel={() => { dragStart.current = null; }}
+      >
+        <article className={`builder-card pika-card ${positionFor(0)}`} aria-hidden={activeCard !== 0}>
+          <div className="pika-award"><span>BERKELEY AI HACKATHON</span><strong>sponsor favorite</strong></div>
+          <div className="pika-post">
+            <div className="pika-profile">
+              <span className="pika-avatar">P</span>
+              <span><strong>Pika <i>✓</i></strong><small>@pika_labs</small></span>
+              <b>•••</b>
+            </div>
+            <p><strong>1. Lumen</strong> lets product placement happen in post. Pass in a product photo and it drops naturally into your footage.</p>
+            <div className="pika-video-wrap">
+              <video src="/assets/pika-lumen.mp4" poster="/assets/pika-lumen-poster.jpg" autoPlay loop muted playsInline preload="metadata" />
+              <span className="pika-number">01</span>
+            </div>
+            <div className="pika-credit"><span>TEAM</span><strong>Raghav Ojha</strong><a href="https://x.com/pika_labs/status/2070604825730089433" target="_blank" rel="noreferrer">view post ↗</a></div>
+          </div>
+        </article>
+
+        <article className={`builder-card photo-card quackhacks-card ${positionFor(1)}`} aria-hidden={activeCard !== 1}>
+          <img src="/assets/quackhacks-stage.jpg" alt="Raghav presenting Agent Studio at QuackHacks" />
+          <div className="builder-card-caption"><span>QUACKHACKS 2026</span><strong>1st place — Agent Studio</strong></div>
+        </article>
+
+        <article className={`builder-card photo-card datathon-card ${positionFor(2)}`} aria-hidden={activeCard !== 2}>
+          <img src="/assets/txst-datathon-team.jpg" alt="Raghav and his full team after winning the Texas State Open Datathon" />
+          <div className="builder-card-caption"><span>TXST OPEN DATATHON</span><strong>1st place — full team</strong></div>
+        </article>
+      </div>
+      <div className="builder-stack-controls">
+        <button type="button" onClick={() => move(-1)} aria-label="Previous builder highlight">←</button>
+        <div aria-label={`Builder highlight ${activeCard + 1} of ${cardCount}`}>
+          {Array.from({ length: cardCount }, (_, index) => (
+            <button key={index} type="button" className={activeCard === index ? "is-active" : ""} onClick={() => setActiveCard(index)} aria-label={`Show builder highlight ${index + 1}`} />
+          ))}
+        </div>
+        <button type="button" onClick={() => move(1)} aria-label="Next builder highlight">→</button>
+      </div>
+      <p className="swipe-note">swipe or tap to browse</p>
+    </div>
+  );
+}
+
+function TransitionLink({ href, className, children, ariaLabel, ariaCurrent }: { href: string; className?: string; children: React.ReactNode; ariaLabel?: string; ariaCurrent?: "page" }) {
   const navigate = (event: React.MouseEvent<HTMLAnchorElement>) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0 || window.location.pathname === href) return;
     event.preventDefault();
     document.querySelector(".site-shell")?.classList.add("page-exiting");
-    window.setTimeout(() => router.push(href), 520);
+    window.setTimeout(() => {
+      const onGitHubPages = window.location.hostname.endsWith("github.io");
+      const target = onGitHubPages ? `/RaghavPortfolio${href === "/" ? "/" : `${href}/`}` : href;
+      window.location.assign(target);
+    }, 520);
   };
 
   return <Link className={className} href={href} aria-label={ariaLabel} aria-current={ariaCurrent} onClick={navigate}>{children}</Link>;
@@ -344,8 +414,13 @@ export function WorkPage() {
                     <div className="tag-row">
                       {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
                     </div>
-                    <div className="project-image-wrap">
-                      <img src={project.image} alt={`${project.name} project preview`} />
+                    <div className={`project-image-wrap ${project.secondaryImage ? "project-image-split" : ""}`}>
+                      {project.secondaryImage ? (
+                        <>
+                          <div className="project-split-top"><img src={project.image} alt={`${project.name} GitHub project header`} /></div>
+                          <div className="project-split-bottom"><img src={project.secondaryImage} alt="Hermes Agent illustrated banner" /></div>
+                        </>
+                      ) : <img src={project.image} alt={`${project.name} project preview`} />}
                     </div>
                   </div>
                   <h3>{project.headline}</h3>
@@ -381,6 +456,10 @@ export function AboutPage() {
       <section className="about-heading intro-enter">
         <h1>who even is this guy anyway</h1>
         <p className="script-note">(great question)</p>
+        <div className="about-contact-links" aria-label="Contact and professional links">
+          <a href="mailto:raghav.ojha.14122@gmail.com">email</a>
+          {socialLinks.map((item) => <a key={item.name} href={item.href} target="_blank" rel="noreferrer">{item.name}</a>)}
+        </div>
       </section>
 
       <section className="about-portrait-section" data-reveal>
@@ -405,10 +484,7 @@ export function AboutPage() {
       <section className="builder-section" data-reveal>
         <h2 className="section-kicker">the <em>builder</em></h2>
         <div className="builder-grid">
-          <div className="builder-photo-wrap">
-            <img src="/assets/quackhacks-stage.jpg" alt="Raghav presenting Agent Studio at QuackHacks" />
-            <span>1ST PLACE — QUACKHACKS</span>
-          </div>
+          <BuilderCardStack />
           <div className="about-copy builder-copy">
             <p className="lead">i build best with a deadline and a demo.</p>
             <p>8+ wins across the u.s., including quackhacks, hackhcc, midnight, and the txst open datathon. agent studio turned plain-language requests into dependable, non-destructive audio edits.</p>

@@ -33,6 +33,7 @@ test("server-renders the portfolio work page", async () => {
   assert.match(html, /StreamCI/);
   assert.match(html, /Agent Studio/);
   assert.match(html, /Hermes Agent/);
+  assert.match(html, /hermes-banner\.jpg/);
   assert.doesNotMatch(html, /MonkFish|Enigma Machine/);
   assert.match(html, /1AVfjaOexCgNw2YNR-j9wEER8JvL_SQYQ/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
@@ -48,6 +49,10 @@ test("server-renders the portfolio about page", async () => {
   assert.match(html, /quackhacks/i);
   assert.match(html, /github contributions/i);
   assert.match(html, /volcano\.mp4/i);
+  assert.match(html, /pika-lumen\.mp4/i);
+  assert.match(html, /BERKELEY AI HACKATHON/i);
+  assert.match(html, /txst-datathon-team\.jpg/i);
+  assert.match(html, /raghav\.ojha\.14122@gmail\.com/i);
   assert.match(html, /software engineering intern/i);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
 });

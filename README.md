@@ -1,4 +1,16 @@
-# vinext-starter
+# New Portfolio
+
+Raghav Ojha's two-page portfolio for selected projects, experience, hackathon work, and photography.
+
+## Local development
+
+```bash
+npm install
+npm run dev
+npm test
+```
+
+## Original starter notes
 
 A clean full-stack starter running on
 [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
