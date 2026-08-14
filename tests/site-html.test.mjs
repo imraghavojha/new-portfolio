@@ -23,7 +23,7 @@ async function render(pathname = "/") {
 }
 
 test("server-renders the portfolio work page", async () => {
-  const response = await render("/");
+  const response = await render("/projects");
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
@@ -39,8 +39,8 @@ test("server-renders the portfolio work page", async () => {
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
 });
 
-test("server-renders the portfolio about page", async () => {
-  const response = await render("/about");
+test("server-renders the portfolio about page at the default route", async () => {
+  const response = await render("/");
   assert.equal(response.status, 200);
 
   const html = await response.text();

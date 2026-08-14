@@ -263,8 +263,8 @@ function Header({ active }: { active: "projects" | "about" }) {
         (raghav)
       </TransitionLink>
       <nav aria-label="Primary navigation">
-        <TransitionLink className={active === "projects" ? "active" : ""} href="/" ariaCurrent={active === "projects" ? "page" : undefined}>projects</TransitionLink>
-        <TransitionLink className={active === "about" ? "active" : ""} href="/about" ariaCurrent={active === "about" ? "page" : undefined}>about</TransitionLink>
+        <TransitionLink className={active === "projects" ? "active" : ""} href="/projects" ariaCurrent={active === "projects" ? "page" : undefined}>projects</TransitionLink>
+        <TransitionLink className={active === "about" ? "active" : ""} href="/" ariaCurrent={active === "about" ? "page" : undefined}>about</TransitionLink>
       </nav>
     </header>
   );
@@ -384,8 +384,8 @@ function Footer() {
       </div>
       <div className="footer-nav">
         <a href="#top">↑ BACK TO TOP</a>
-        <TransitionLink href="/">PROJECTS</TransitionLink>
-        <TransitionLink href="/about">ABOUT</TransitionLink>
+        <TransitionLink href="/projects">PROJECTS</TransitionLink>
+        <TransitionLink href="/">ABOUT</TransitionLink>
       </div>
       <div className="footer-nav">
         <a href="https://www.linkedin.com/in/imraghavojha/" target="_blank" rel="noreferrer">LINKEDIN</a>
