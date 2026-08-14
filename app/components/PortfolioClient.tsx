@@ -79,7 +79,8 @@ const tools = [
   { name: "Go", src: "/assets/go.svg", className: "tool-go" },
   { name: "PostgreSQL", src: "/assets/postgresql.svg", className: "tool-postgres" },
   { name: "Codex", src: "/assets/codex-color.png", className: "tool-codex" },
-  { name: "Java", src: "/assets/java.svg", className: "tool-java" },
+  { name: "T3 Code", src: "/assets/t3-code.svg", className: "tool-t3" },
+  { name: "Hermes Agent", src: "/assets/hermes-agent.png", className: "tool-hermes" },
 ];
 
 const hackathons = [
@@ -335,6 +336,40 @@ function RevealObserver() {
   return null;
 }
 
+function ContactLinks({ onPreviewChange }: { onPreviewChange: (preview: PreviewName) => void }) {
+  return (
+    <>
+      <a className="email-link" href="mailto:raghav.ojha.14122@gmail.com">raghav.ojha.14122@gmail.com</a>
+      <div className="social-links" aria-label="Professional links">
+        {socialLinks.map((item) => (
+          <a
+            key={item.name}
+            href={item.href}
+            target="_blank"
+            rel="noreferrer"
+            onMouseEnter={() => onPreviewChange(item.name)}
+            onMouseLeave={() => onPreviewChange(null)}
+            onFocus={() => onPreviewChange(item.name)}
+            onBlur={() => onPreviewChange(null)}
+          >
+            {item.name}
+          </a>
+        ))}
+      </div>
+    </>
+  );
+}
+
+function SocialPreviewLayer({ preview }: { preview: PreviewName }) {
+  return (
+    <div className="social-preview-layer" aria-hidden="true">
+      {socialLinks.map((item) => (
+        <img key={item.name} className={`social-preview preview-${item.name} ${preview === item.name ? "is-visible" : ""}`} src={item.image} alt="" />
+      ))}
+    </div>
+  );
+}
+
 function Footer() {
   return (
     <footer className="footer">
@@ -380,23 +415,7 @@ export function WorkPage() {
           <p className="intro-copy">
             currently building ai products at <a className="inline-link" href="https://www.alive5.com/" target="_blank" rel="noreferrer">alive5</a>. studying computer science and mathematics at texas state.
           </p>
-          <a className="email-link" href="mailto:raghav.ojha.14122@gmail.com">raghav.ojha.14122@gmail.com</a>
-          <div className="social-links" aria-label="Professional links">
-            {socialLinks.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-                onMouseEnter={() => setPreview(item.name)}
-                onMouseLeave={() => setPreview(null)}
-                onFocus={() => setPreview(item.name)}
-                onBlur={() => setPreview(null)}
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
+          <ContactLinks onPreviewChange={setPreview} />
         </div>
 
         <div className="project-column">
@@ -430,11 +449,7 @@ export function WorkPage() {
         </div>
       </section>
 
-      <div className="social-preview-layer" aria-hidden="true">
-        {socialLinks.map((item) => (
-          <img key={item.name} className={`social-preview preview-${item.name} ${preview === item.name ? "is-visible" : ""}`} src={item.image} alt="" />
-        ))}
-      </div>
+      <SocialPreviewLayer preview={preview} />
       <section className="work-end" data-reveal>
         <h2>you&apos;ve reached the end.</h2>
         <p>thanks for looking around. if one of these projects sparked an idea, i&apos;d love to hear it.</p>
@@ -446,6 +461,8 @@ export function WorkPage() {
 }
 
 export function AboutPage() {
+  const [preview, setPreview] = useState<PreviewName>(null);
+
   return (
     <main className="site-shell page-about" id="top">
       <Cursor />
@@ -455,19 +472,21 @@ export function AboutPage() {
       <section className="about-heading intro-enter">
         <h1>who even is this guy anyway</h1>
         <p className="script-note">(great question)</p>
-        <div className="about-contact-links" aria-label="Contact and professional links">
-          <a href="mailto:raghav.ojha.14122@gmail.com">email</a>
-          {socialLinks.map((item) => <a key={item.name} href={item.href} target="_blank" rel="noreferrer">{item.name}</a>)}
-        </div>
       </section>
 
       <section className="about-portrait-section" data-reveal>
         <h2 className="section-kicker">the <em>engineer</em></h2>
         <div className="about-portrait-grid">
-          <div className="about-copy">
-            <p className="lead">i build ai systems and developer tools that turn complicated workflows into usable products.</p>
-            <p>i like work that crosses product and infrastructure: agents, reliable apis, cloud systems, and interfaces that make the machinery feel obvious.</p>
-            <p className="lead">currently building ai products at alive5 and studying computer science + mathematics at texas state.</p>
+          <div className="about-copy engineer-contact-copy">
+            <h3>software engineer building useful things with ai.</h3>
+            <p className="script-note">(nice to meet you)</p>
+            <p className="intro-copy">
+              i build agents, developer tools, and cloud systems that turn complicated workflows into something people can actually use. based in austin, tx.
+            </p>
+            <p className="intro-copy">
+              currently building ai products at <a className="inline-link" href="https://www.alive5.com/" target="_blank" rel="noreferrer">alive5</a>. studying computer science and mathematics at texas state.
+            </p>
+            <ContactLinks onPreviewChange={setPreview} />
           </div>
           <div className="portrait-stage">
             <img className="about-photo" src="/assets/raghav-mountains.jpg" alt="Raghav Ojha in the mountains" />
@@ -479,6 +498,8 @@ export function AboutPage() {
           </div>
         </div>
       </section>
+
+      <SocialPreviewLayer preview={preview} />
 
       <section className="builder-section" data-reveal>
         <h2 className="section-kicker">the <em>builder</em></h2>

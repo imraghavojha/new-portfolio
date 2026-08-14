@@ -53,6 +53,8 @@ test("server-renders the portfolio about page", async () => {
   assert.match(html, /BERKELEY AI HACKATHON/i);
   assert.match(html, /txst-datathon-team\.jpg/i);
   assert.match(html, /raghav\.ojha\.14122@gmail\.com/i);
+  assert.match(html, /t3-code\.svg/i);
+  assert.match(html, /hermes-agent\.png/i);
   assert.match(html, /software engineering intern/i);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
 });
