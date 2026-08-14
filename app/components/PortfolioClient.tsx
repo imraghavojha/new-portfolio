@@ -247,7 +247,7 @@ function TransitionLink({ href, className, children, ariaLabel, ariaCurrent }: {
     event.preventDefault();
     document.querySelector(".site-shell")?.classList.add("page-exiting");
     window.setTimeout(() => {
-      const onGitHubPages = window.location.hostname.endsWith("github.io");
+      const onGitHubPages = window.location.hostname.endsWith("github.io") || window.location.pathname.startsWith("/RaghavPortfolio");
       const target = onGitHubPages ? `/RaghavPortfolio${href === "/" ? "/" : `${href}/`}` : href;
       window.location.assign(target);
     }, 520);
