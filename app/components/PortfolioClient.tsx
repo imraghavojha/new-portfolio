@@ -31,6 +31,30 @@ const socialLinks = [
 
 const projects = [
   {
+    name: "Agent Studio",
+    image: "/assets/agent-studio.png",
+    href: "https://2026.quackhacks.org/projects/winners/agent-studio",
+    headline: "editing audio by talking to an agent instead of touching a timeline",
+    tags: ["AGENT STUDIO", "1ST @ QUACKHACKS", "GEMINI + MCP"],
+    className: "project-agent-studio",
+  },
+  {
+    name: "Hermes Agent",
+    image: "/assets/hermes-optimized.png",
+    href: "https://github.com/imraghavojha/Hermes-Optimized",
+    headline: "an always-on personal agent with lazy tool discovery that cuts schema tokens by 80%",
+    tags: ["HERMES AGENT", "LAZY TOOL LOADING", "PYTHON + LINUX"],
+    className: "project-hermes",
+  },
+  {
+    name: "Lit",
+    image: "/assets/lit.jpg",
+    href: "https://github.com/imraghavojha/lit",
+    headline: "rebuilding version control from first principles in java",
+    tags: ["LIT", "CONTENT ADDRESSING", "JAVA + JUNIT"],
+    className: "project-lit",
+  },
+  {
     name: "Lagoon",
     image: "/assets/lagoon.jpg",
     href: "https://imraghavojha.github.io/lagoon/",
@@ -46,43 +70,41 @@ const projects = [
     tags: ["15+ PIPELINE METRICS", "LIVE WEBSOCKETS", "SPRING BOOT"],
     className: "project-streamci",
   },
-  {
-    name: "Lit",
-    image: "/assets/lit.jpg",
-    href: "https://github.com/imraghavojha/lit",
-    headline: "rebuilding version control from first principles in java",
-    tags: ["CONTENT ADDRESSING", "10 CORE COMMANDS", "JAVA + JUNIT"],
-    className: "project-lit",
-  },
-  {
-    name: "Enigma Machine",
-    image: "/assets/enigma.jpg",
-    href: "https://github.com/imraghavojha/Enigma-Machine",
-    headline: "a historically accurate encryption machine you can explore in 3d",
-    tags: ["C++ CORE", "THREE.JS INTERFACE", "80% TEST COVERAGE"],
-    className: "project-enigma",
-  },
-  {
-    name: "MonkFish",
-    image: "/assets/monkfish.jpg",
-    href: "https://imraghavojha.github.io/monkfish-link/",
-    headline: "a chess engine that rewards balance instead of brute-force aggression",
-    tags: ["CUSTOM EVALUATION", "UCI PROTOCOL", "PYTHON + REACT"],
-    className: "project-monkfish",
-  },
 ];
 
 const tools = [
   { name: "Python", src: "/assets/python.svg", className: "tool-python" },
-  { name: "TypeScript", src: "/assets/typescript.svg", className: "tool-typescript" },
-  { name: "React", src: "/assets/react.svg", className: "tool-react" },
-  { name: "Node.js", src: "/assets/nodejs.svg", className: "tool-node" },
-  { name: "AWS", src: "/assets/aws.svg", className: "tool-aws" },
+  { name: "Claude", src: "/assets/claude.png", className: "tool-claude" },
+  { name: "GitHub Copilot", src: "/assets/github-copilot.jpg", className: "tool-copilot" },
   { name: "Docker", src: "/assets/docker.svg", className: "tool-docker" },
   { name: "Go", src: "/assets/go.svg", className: "tool-go" },
   { name: "PostgreSQL", src: "/assets/postgresql.svg", className: "tool-postgres" },
-  { name: "Claude", src: "/assets/claude.png", className: "tool-claude" },
+  { name: "Codex", src: "/assets/codex-color.png", className: "tool-codex" },
+  { name: "Java", src: "/assets/java.svg", className: "tool-java" },
 ];
+
+const hackathons = [
+  { name: "Midnight", award: "winner", logo: "/assets/hackathons/midnight.svg" },
+  { name: "HackHCC", award: "winner", logo: "/assets/hackathons/hackhcc.png" },
+  { name: "QuackHacks", award: "winner", logo: "/assets/hackathons/quackhacks.png" },
+  { name: "TXST Datathon", award: "1st place", logo: "/assets/hackathons/txst-datathon.png" },
+  { name: "Austin AI", award: "2× runner-up", logo: "/assets/hackathons/austin-ai.png" },
+];
+
+const gallery = [
+  { type: "image", src: "/assets/gallery/museum.jpg", alt: "Edward Hopper painting at a museum" },
+  { type: "image", src: "/assets/gallery/eclipse.jpg", alt: "Solar eclipse through clouds" },
+  { type: "image", src: "/assets/gallery/hackathon-bag.jpg", alt: "Doodled QuackHacks bag" },
+  { type: "image", src: "/assets/gallery/city.jpg", alt: "City view through spring trees" },
+  { type: "video", src: "/assets/gallery/volcano.mp4", alt: "Volcano erupting above the clouds" },
+  { type: "image", src: "/assets/gallery/beach.jpg", alt: "Swimming goggles overlooking the ocean" },
+  { type: "image", src: "/assets/gallery/mountains.jpg", alt: "Mountain road and landscape" },
+  { type: "image", src: "/assets/gallery/turtle.jpg", alt: "Sea turtle on the shore" },
+  { type: "image", src: "/assets/gallery/travel.jpg", alt: "Travel memory" },
+  { type: "image", src: "/assets/gallery/heic-photo.jpg", alt: "A favorite travel moment" },
+  { type: "image", src: "/assets/gallery/landscape.jpg", alt: "Cloudy mountain landscape" },
+  { type: "image", src: "/assets/gallery/gaming.jpg", alt: "Late-night gaming setup" },
+] as const;
 
 const experience = [
   {
@@ -92,6 +114,7 @@ const experience = [
     role: "software engineering intern — ai",
     description: "building mcp servers, ai bot configuration, automation integrations, and embeddable react chatbots powered by claude on aws bedrock.",
     dates: "aug 2026 — present",
+    markClass: "mark-alive5",
   },
   {
     logo: "/assets/txst-logo.svg",
@@ -100,16 +123,55 @@ const experience = [
     role: "software developer",
     description: "built a restaurant point-of-sale system in a five-person agile team, covering role-based access, tables, orders, and staff queues.",
     dates: "jan 2026 — may 2026",
+    markClass: "mark-txst",
   },
   {
-    logo: "/assets/txst-logo.svg",
-    logoAlt: "Texas State University logo",
+    logo: "/assets/txst-bobcat.png",
+    logoAlt: "Texas State Bobcat emblem",
     company: "oxp — texas state",
     role: "project assistant",
     description: "improved reporting across $2m+ in hardware, automated 100+ device provisions, and surfaced 100+ broken department links.",
     dates: "may 2024 — sep 2024",
+    markClass: "mark-bobcat",
   },
 ];
+
+function ContributionGrid() {
+  const fallback = Array.from({ length: 364 }, (_, index) => {
+    const pulse = (index * 17 + index * index * 3) % 31;
+    return pulse > 26 ? 4 : pulse > 21 ? 3 : pulse > 14 ? 2 : pulse > 8 ? 1 : 0;
+  });
+  const [levels, setLevels] = useState(fallback);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetch("https://github-contributions-api.jogruber.de/v4/imraghavojha?y=last", { signal: controller.signal })
+      .then((response) => response.ok ? response.json() : Promise.reject(new Error("contribution data unavailable")))
+      .then((data: { contributions?: Array<{ level?: number; count?: number }> }) => {
+        const values = (data.contributions ?? []).slice(-364).map((day) => {
+          if (typeof day.level === "number") return Math.max(0, Math.min(4, day.level));
+          const count = day.count ?? 0;
+          return count === 0 ? 0 : count < 3 ? 1 : count < 7 ? 2 : count < 12 ? 3 : 4;
+        });
+        if (values.length > 300) setLevels(values);
+      })
+      .catch(() => undefined);
+    return () => controller.abort();
+  }, []);
+
+  return (
+    <div className="contribution-card">
+      <div className="contribution-head">
+        <span>github contributions</span>
+        <a href="https://github.com/imraghavojha" target="_blank" rel="noreferrer">@imraghavojha ↗</a>
+      </div>
+      <div className="contribution-grid" role="img" aria-label="Raghav's GitHub contribution activity over the last year">
+        {levels.map((level, index) => <span className={`contribution-day level-${level}`} key={index} />)}
+      </div>
+      <div className="contribution-legend" aria-hidden="true"><span>less</span>{[0, 1, 2, 3, 4].map((level) => <i className={`level-${level}`} key={level} />)}<span>more</span></div>
+    </div>
+  );
+}
 
 function TransitionLink({ href, className, children, ariaLabel, ariaCurrent }: { href: string; className?: string; children: React.ReactNode; ariaLabel?: string; ariaCurrent?: "page" }) {
   const router = useRouter();
@@ -124,14 +186,14 @@ function TransitionLink({ href, className, children, ariaLabel, ariaCurrent }: {
   return <Link className={className} href={href} aria-label={ariaLabel} aria-current={ariaCurrent} onClick={navigate}>{children}</Link>;
 }
 
-function Header({ active }: { active: "work" | "about" }) {
+function Header({ active }: { active: "projects" | "about" }) {
   return (
     <header className="topbar">
       <TransitionLink className="wordmark" href="/" ariaLabel="Raghav Ojha home">
         (raghav)
       </TransitionLink>
       <nav aria-label="Primary navigation">
-        <TransitionLink className={active === "work" ? "active" : ""} href="/" ariaCurrent={active === "work" ? "page" : undefined}>work</TransitionLink>
+        <TransitionLink className={active === "projects" ? "active" : ""} href="/" ariaCurrent={active === "projects" ? "page" : undefined}>projects</TransitionLink>
         <TransitionLink className={active === "about" ? "active" : ""} href="/about" ariaCurrent={active === "about" ? "page" : undefined}>about</TransitionLink>
       </nav>
     </header>
@@ -218,7 +280,7 @@ function Footer() {
       </div>
       <div className="footer-nav">
         <a href="#top">↑ BACK TO TOP</a>
-        <TransitionLink href="/">WORK</TransitionLink>
+        <TransitionLink href="/">PROJECTS</TransitionLink>
         <TransitionLink href="/about">ABOUT</TransitionLink>
       </div>
       <div className="footer-nav">
@@ -237,12 +299,12 @@ export function WorkPage() {
     <main className="site-shell page-work" id="top">
       <Cursor />
       <RevealObserver />
-      <Header active="work" />
+      <Header active="projects" />
 
       <section className="work-layout">
         <div className="intro-column intro-enter">
-          <p className="script-note">(nice to meet you)</p>
           <h1>software engineer building useful things with ai.</h1>
+          <p className="script-note">(nice to meet you)</p>
           <p className="intro-copy">
             i build agents, developer tools, and cloud systems that turn complicated workflows into something people can actually use. based in austin, tx.
           </p>
@@ -270,7 +332,7 @@ export function WorkPage() {
 
         <div className="project-column">
           <div className="project-intro intro-enter intro-enter-late">
-            <h2>here&apos;s some<br />cool stuff i&apos;ve built.</h2>
+            <h2>here&apos;s some<br />cool projects i&apos;ve built.</h2>
             <p className="script-note">(in my opinion)</p>
             <p className="scroll-note">scroll down for more ↓</p>
           </div>
@@ -325,10 +387,9 @@ export function AboutPage() {
         <h2 className="section-kicker">the <em>engineer</em></h2>
         <div className="about-portrait-grid">
           <div className="about-copy">
-            <p className="lead">i&apos;m a software engineer and computer science student who likes building systems where ai has to do real work.</p>
-            <p>the projects i enjoy most sit between product and infrastructure: an agent that can edit audio, a development environment that is actually reproducible, or a platform that makes live deployment health understandable.</p>
-            <p>i care about the invisible parts too — clear interfaces, reliable APIs, useful failure states, and whether a complicated system feels obvious once you&apos;re inside it.</p>
-            <p className="lead">currently building ai products at alive5 in austin and studying computer science with a mathematics minor at texas state.</p>
+            <p className="lead">i build ai systems and developer tools that turn complicated workflows into usable products.</p>
+            <p>i like work that crosses product and infrastructure: agents, reliable apis, cloud systems, and interfaces that make the machinery feel obvious.</p>
+            <p className="lead">currently building ai products at alive5 and studying computer science + mathematics at texas state.</p>
           </div>
           <div className="portrait-stage">
             <img className="about-photo" src="/assets/raghav-mountains.jpg" alt="Raghav Ojha in the mountains" />
@@ -349,9 +410,19 @@ export function AboutPage() {
             <span>1ST PLACE — QUACKHACKS</span>
           </div>
           <div className="about-copy builder-copy">
-            <p className="lead">i like deadlines, demos, and building the thing people say is probably too much for one weekend.</p>
-            <p>that instinct has led to 8+ hackathon wins, including first-place finishes at the txst open datathon, midnight hackathon, hackhcc, and quackhacks.</p>
-            <p>agent studio won by turning plain-language audio requests into a non-destructive editing workflow across twelve capabilities. the fun part was not the demo — it was making the agent dependable enough to trust.</p>
+            <p className="lead">i build best with a deadline and a demo.</p>
+            <p>8+ wins across the u.s., including quackhacks, hackhcc, midnight, and the txst open datathon. agent studio turned plain-language requests into dependable, non-destructive audio edits.</p>
+            <div className="hackathon-marquee" aria-label="Hackathon awards">
+              <div className="hackathon-track">
+                {[...hackathons, ...hackathons].map((hackathon, index) => (
+                  <div className="hackathon-chip" key={`${hackathon.name}-${index}`} aria-hidden={index >= hackathons.length}>
+                    <span className="hackathon-logo"><img src={hackathon.logo} alt="" /></span>
+                    <span><strong>{hackathon.name}</strong><small>{hackathon.award}</small></span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <ContributionGrid />
           </div>
         </div>
       </section>
@@ -361,7 +432,7 @@ export function AboutPage() {
         <div className="experience-list">
           {experience.map((job) => (
             <article className="experience-item" key={job.company}>
-              <div className="company-mark"><img src={job.logo} alt={job.logoAlt} /></div>
+              <div className={`company-mark ${job.markClass}`}><img src={job.logo} alt={job.logoAlt} /></div>
               <div className="experience-main">
                 <h3>{job.company}</h3>
                 <p className="experience-role">{job.role}</p>
@@ -382,13 +453,11 @@ export function AboutPage() {
           <a className="email-link" href="mailto:raghav.ojha.14122@gmail.com">raghav.ojha.14122@gmail.com</a>
         </div>
         <div className="photo-strip">
-          <img src="/assets/beyond-subway.jpg" alt="A city subway platform" />
-          <img src="/assets/raghav-portrait.jpg" alt="Raghav outdoors" />
-          <img src="/assets/beyond-turtle.jpg" alt="A sea turtle underwater" />
-          <img src="/assets/raghav-mirror.jpg" alt="Raghav in a Spider-Man sweatshirt" />
-          <img src="/assets/beyond-mlh.jpg" alt="Hackathon memories" />
-          <img src="/assets/beyond-beach.jpg" alt="A beach view" />
-          <img src="/assets/raghav-mountains.jpg" alt="Raghav in the mountains" />
+          {gallery.map((item) => item.type === "video" ? (
+            <video key={item.src} src={item.src} aria-label={item.alt} autoPlay loop muted playsInline preload="metadata" />
+          ) : (
+            <img key={item.src} src={item.src} alt={item.alt} />
+          ))}
         </div>
       </section>
 

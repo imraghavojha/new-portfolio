@@ -31,7 +31,9 @@ test("server-renders the portfolio work page", async () => {
   assert.match(html, /Raghav Ojha/);
   assert.match(html, /Lagoon/);
   assert.match(html, /StreamCI/);
-  assert.match(html, /MonkFish/);
+  assert.match(html, /Agent Studio/);
+  assert.match(html, /Hermes Agent/);
+  assert.doesNotMatch(html, /MonkFish|Enigma Machine/);
   assert.match(html, /1AVfjaOexCgNw2YNR-j9wEER8JvL_SQYQ/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
 });
@@ -44,6 +46,8 @@ test("server-renders the portfolio about page", async () => {
   assert.match(html, /who even is this guy anyway/i);
   assert.match(html, /alive5/i);
   assert.match(html, /quackhacks/i);
+  assert.match(html, /github contributions/i);
+  assert.match(html, /volcano\.mp4/i);
   assert.match(html, /software engineering intern/i);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
 });
