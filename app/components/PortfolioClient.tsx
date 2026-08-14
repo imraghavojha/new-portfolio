@@ -3,7 +3,6 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 
 type PreviewName = "resume" | "linkedin" | "github" | null;
 
@@ -253,7 +252,7 @@ function TransitionLink({ href, className, children, ariaLabel, ariaCurrent }: {
     }, 520);
   };
 
-  return <Link className={className} href={href} aria-label={ariaLabel} aria-current={ariaCurrent} onClick={navigate}>{children}</Link>;
+  return <a className={className} href={href} aria-label={ariaLabel} aria-current={ariaCurrent} onClick={navigate}>{children}</a>;
 }
 
 function Header({ active }: { active: "projects" | "about" }) {
