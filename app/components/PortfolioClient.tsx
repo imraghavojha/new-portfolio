@@ -37,6 +37,24 @@ const projects = [
     className: "project-agent-studio",
   },
   {
+    name: "LightSTT",
+    image: "/assets/lightstt-demo-poster.jpg",
+    video: "/assets/lightstt-demo.mp4",
+    href: "https://github.com/imraghavojha/lightstt",
+    headline: "press option-space, talk, and the words land wherever your cursor is",
+    tags: ["LIGHTSTT", "ON-DEVICE WHISPER", "SWIFT + MACOS"],
+    className: "project-lightstt",
+  },
+  {
+    name: "GoodSticky",
+    image: "/assets/goodsticky-demo-poster.jpg",
+    video: "/assets/goodsticky-demo.mp4",
+    href: "https://github.com/imraghavojha/goodstickynote",
+    headline: "native sticky notes that stack, tuck away, and use half the memory of apple stickies",
+    tags: ["GOODSTICKY", "18 MB VS 32 MB", "SWIFT + APPKIT"],
+    className: "project-goodsticky",
+  },
+  {
     name: "Hermes Agent",
     image: "/assets/hermes-optimized.png",
     secondaryImage: "/assets/hermes-banner.jpg",
@@ -60,14 +78,6 @@ const projects = [
     headline: "reproducible sandboxed shells without containers, daemons, or root",
     tags: ["GO + NIX", "LINUX NAMESPACES", "DOCKER ALTERNATIVE"],
     className: "project-lagoon",
-  },
-  {
-    name: "StreamCI",
-    image: "/assets/streamci.jpg",
-    href: "https://imraghavojha.github.io/streamci-link/",
-    headline: "making real-time ci/cd health legible across every repository",
-    tags: ["15+ PIPELINE METRICS", "LIVE WEBSOCKETS", "SPRING BOOT"],
-    className: "project-streamci",
   },
 ];
 
@@ -176,7 +186,7 @@ function ContributionGrid() {
 function BuilderCardStack() {
   const [activeCard, setActiveCard] = useState(0);
   const dragStart = useRef<number | null>(null);
-  const cardCount = 3;
+  const cardCount = 4;
 
   const move = (direction: number) => {
     setActiveCard((current) => (current + direction + cardCount) % cardCount);
@@ -222,7 +232,12 @@ function BuilderCardStack() {
           <div className="builder-card-caption"><span>QUACKHACKS 2026</span><strong>1st place — Agent Studio</strong></div>
         </article>
 
-        <article className={`builder-card photo-card datathon-card ${positionFor(2)}`} aria-hidden={activeCard !== 2}>
+        <article className={`builder-card photo-card hackhcc-card ${positionFor(2)}`} aria-hidden={activeCard !== 2}>
+          <img src="/assets/winimage.png" alt="Raghav celebrating a HackHCC backend win" />
+          <div className="builder-card-caption"><span>HACKHCC 2026</span><strong>best backend win</strong></div>
+        </article>
+
+        <article className={`builder-card photo-card datathon-card ${positionFor(3)}`} aria-hidden={activeCard !== 3}>
           <img src="/assets/txst-datathon-team.jpg" alt="Raghav and his full team after winning the Texas State Open Datathon" />
           <div className="builder-card-caption"><span>TXST OPEN DATATHON</span><strong>1st place — full team</strong></div>
         </article>
@@ -379,8 +394,8 @@ function Footer() {
         <a href="mailto:raghav.ojha.14122@gmail.com">raghav.ojha.14122@gmail.com</a>
       </div>
       <div className="footer-quote">
-        <p>the best tool is the one that disappears into the work.</p>
-        <span>(my engineering philosophy, basically)</span>
+        <p>I get shit done</p>
+        <span>(my philosophy, basically)</span>
       </div>
       <div className="footer-nav">
         <a href="#top">↑ BACK TO TOP</a>
@@ -438,6 +453,8 @@ export function WorkPage() {
                           <div className="project-split-top"><img src={project.image} alt={`${project.name} GitHub project header`} /></div>
                           <div className="project-split-bottom"><img src={project.secondaryImage} alt="Hermes Agent illustrated banner" /></div>
                         </>
+                      ) : project.video ? (
+                        <video src={project.video} poster={project.image} aria-label={`${project.name} demo`} autoPlay loop muted playsInline preload="metadata" />
                       ) : <img src={project.image} alt={`${project.name} project preview`} />}
                     </div>
                   </div>
@@ -507,7 +524,7 @@ export function AboutPage() {
           <BuilderCardStack />
           <div className="about-copy builder-copy">
             <p className="lead">i build best with a deadline and a demo.</p>
-            <p>8+ wins across the u.s., including quackhacks, hackhcc, midnight, and the txst open datathon. agent studio turned plain-language requests into dependable, non-destructive audio edits.</p>
+            <p>8+ wins across the u.s., including quackhacks, hackhcc, midnight, and the txst open datathon.</p>
             <div className="hackathon-marquee" aria-label="Hackathon awards">
               <div className="hackathon-track">
                 {[...hackathons, ...hackathons].map((hackathon, index) => (

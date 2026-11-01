@@ -334,7 +334,17 @@ a { color: inherit; }
 .project-agent-studio .project-image-wrap { background: #11121a; }
 .project-hermes .project-image-wrap { background: #f0f2f4; }
 .project-lagoon .project-image-wrap { background: #f6f3ed; }
-.project-streamci .project-image-wrap { background: #071018; }
+.project-lightstt .project-image-wrap { background: #f3f2f0; }
+.project-goodsticky .project-image-wrap { background: #1a211f; }
+.project-image-wrap video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+  transition: transform .5s cubic-bezier(.4,.24,.4,1);
+}
+.project-link:hover .project-image-wrap video { transform: scale(1.04); }
 .project-lit .project-image-wrap { background: #101319; }
 .project-agent-studio .project-image-wrap img { height: 116%; object-fit: contain; }
 .project-hermes .project-image-wrap { background: #fff; }
@@ -894,7 +904,7 @@ a { color: inherit; }
   overflow: hidden;
 }
 .footer::before {
-  content: "raghav[dot]design";
+  content: "raghavojha";
   position: absolute;
   left: -1vw;
   bottom: -3vw;

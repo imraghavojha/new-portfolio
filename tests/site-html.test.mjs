@@ -30,8 +30,11 @@ test("server-renders the portfolio work page", async () => {
   const html = await response.text();
   assert.match(html, /Raghav Ojha/);
   assert.match(html, /Lagoon/);
-  assert.match(html, /StreamCI/);
+  assert.doesNotMatch(html, /StreamCI/);
   assert.match(html, /Agent Studio/);
+  assert.match(html, /Agent Studio[\s\S]*LightSTT[\s\S]*GoodSticky[\s\S]*Hermes Agent/);
+  assert.match(html, /lightstt-demo\.mp4/);
+  assert.match(html, /goodsticky-demo\.mp4/);
   assert.match(html, /Hermes Agent/);
   assert.match(html, /hermes-banner\.jpg/);
   assert.doesNotMatch(html, /MonkFish|Enigma Machine/);
@@ -52,6 +55,7 @@ test("server-renders the portfolio about page at the default route", async () =>
   assert.match(html, /pika-lumen\.mp4/i);
   assert.match(html, /BERKELEY AI HACKATHON/i);
   assert.match(html, /txst-datathon-team\.jpg/i);
+  assert.match(html, /winimage\.png/i);
   assert.match(html, /raghav\.ojha\.14122@gmail\.com/i);
   assert.match(html, /t3-code\.svg/i);
   assert.match(html, /hermes-agent\.png/i);
